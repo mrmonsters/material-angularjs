@@ -1,10 +1,10 @@
-var movieApp = angular.module('movieApp',
+var app = angular.module('app',
     [
         'ngRoute',
         'movieControllers'
     ]);
 
-movieApp.config(['$routeProvider', function($routeProvider)
+app.config(['$routeProvider', function($routeProvider)
     {
         $routeProvider
             .when('/movies/search',

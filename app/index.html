@@ -23,16 +23,17 @@
         <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
         <script type="text/javascript" src="./bower_components/angular-resource/angular-resource.js"></script>
         <script type="text/javascript" src="./bower_components/angular-route/angular-route.js"></script>
-        <script type="type/javascript" src="./js/app.js"></script>
-        <script type="type/javascript" src="./js/controllers.js"></script>
 
+        <!-- Do not specify script type as Javascript, else it wouldn't work -->
+        <script src="./js/app.js"></script>
+        <script src="./js/controllers.js"></script>
         <script src="./src/movies/Movies.js"></script>
         <script src="./src/movies/MovieService.js"></script>
 
         <script type="text/javascript">
 
             angular
-                .module('movieApp', ['ngMaterial', 'movies'])
+                .module('movieApp', ['ngMaterial', 'movies', 'app'])
                 .config(function($mdThemingProvider, $mdIconProvider){
 
             $mdIconProvider
@@ -44,7 +45,8 @@
                 .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)
                 .icon("phone"      , "./assets/svg/phone.svg"       , 512);
 
-            $mdThemingProvider.theme('default')
+            $mdThemingProvider
+                .theme('default')
                 .primaryPalette('brown')
                 .accentPalette('red');
 

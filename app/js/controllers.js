@@ -1,13 +1,14 @@
-var movieControllers = angular
-    .module('movieControllers', []);
+var movieControllers = angular.module('movieControllers', []);
 
 movieControllers.controller('searchCtrl',
 [
     '$scope',
     '$http',
-    'movieService'
-],
-function($scope, $http, movieService)
+    'movieService',
+    SearchController
+]);
+
+function SearchController($scope, $http, movieService)
 {
     $scope.searchInfo = {};
     $scope.movieInfo = {};
@@ -42,4 +43,4 @@ function($scope, $http, movieService)
             alert('Please enter any movie title.');
         }
     }
-});
+}
