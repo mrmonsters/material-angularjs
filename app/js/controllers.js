@@ -12,6 +12,7 @@ function SearchController($scope, $http, movieService)
 {
     $scope.searchInfo = {};
     $scope.movieInfo = {};
+    $scope.imgUrl = './assets/img/Angularjs-large.png';
 
     $scope.search = function()
     {
