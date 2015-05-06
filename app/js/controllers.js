@@ -1,4 +1,4 @@
-var movieControllers = angular.module('movieControllers', []);
+var movieControllers = angular.module('movieControllers', ['utils']);
 
 movieControllers
     .controller('searchCtrl',
@@ -6,6 +6,7 @@ movieControllers
         '$scope',
         '$http',
         '$location',
+        'dialogService',
         'movieService',
         SearchController
     ])
@@ -17,7 +18,7 @@ movieControllers
         ResultController
     ]);
 
-function SearchController($scope, $http, $location, movieService)
+function SearchController($scope, $http, $location, dialogService, movieService)
 {
     $scope.searchInfo = {};
 
@@ -45,13 +46,23 @@ function SearchController($scope, $http, $location, movieService)
                 }
                 else
                 {
-                    alert(data['Error']);
+                    dialogService.showAlert(
+                        'Error',
+                        data['Error'],
+                        'Movie not found.',
+                        'Got it!'
+                    );
                 }
             });
         }
         else
         {
-            alert('Please enter any movie title.');
+            dialogService.showAlert(
+                'Oops!',
+                'Please enter any movie title to search.',
+                'Enter any movie title',
+                'Got it!'
+            );
         }
     }
 }
