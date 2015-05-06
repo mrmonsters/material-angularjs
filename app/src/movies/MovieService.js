@@ -14,11 +14,6 @@
         var baseUrl = 'http://www.omdbapi.com/?plot=short&r=json';
         var movie = [];
 
-        this.test = function()
-        {
-            return 'I\'m here!';
-        };
-
         this.getBaseUrl = function()
         {
             return baseUrl;
@@ -40,6 +35,7 @@
         {
             if (value)
             {
+                value = value.replace(/ /g, '+');
                 url += param + value;
             }
 
