@@ -12,6 +12,11 @@ app.config(['$routeProvider', function($routeProvider)
                 templateUrl: '/src/movies/partials/movie-search.html',
                 controller: 'searchCtrl'
             })
+            .when('/movies/result',
+            {
+                templateUrl: 'src/movies/partials/movie-result.html',
+                controller: 'resultCtrl'
+            })
             .otherwise
             ({
                 redirectTo: '/movies/search'

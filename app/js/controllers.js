@@ -1,18 +1,25 @@
 var movieControllers = angular.module('movieControllers', []);
 
-movieControllers.controller('searchCtrl',
-[
-    '$scope',
-    '$http',
-    'movieService',
-    SearchController
-]);
+movieControllers
+    .controller('searchCtrl',
+    [
+        '$scope',
+        '$http',
+        '$location',
+        'movieService',
+        SearchController
+    ])
+    .controller('resultCtrl',
+    [
+        '$scope',
+        '$location',
+        'movieService',
+        ResultController
+    ]);
 
-function SearchController($scope, $http, movieService)
+function SearchController($scope, $http, $location, movieService)
 {
     $scope.searchInfo = {};
-    $scope.movieInfo = {};
-    $scope.imgUrl = './assets/img/Angularjs-large.png';
 
     $scope.search = function()
     {
@@ -29,19 +36,31 @@ function SearchController($scope, $http, movieService)
             {
                 if (data['Response'] == 'True')
                 {
-                    $scope.movieInfo = data;
+                    movieService.setMovie(data);
+                    $location.path('/movies/result');
                 }
                 else
                 {
                     alert(data['Error']);
                 }
-
-                console.log(JSON.stringify($scope.movieInfo));
             });
         }
         else
         {
             alert('Please enter any movie title.');
         }
+    }
+}
+
+function ResultController($scope, $location, movieService)
+{
+    if (data = movieService.getMovie())
+    {
+        $scope.movieInfo = data;
+    }
+
+    $scope.goBack = function()
+    {
+        $location.path('movies/search');
     }
 }
