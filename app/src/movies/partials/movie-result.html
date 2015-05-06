@@ -14,7 +14,9 @@
 
         <md-input-container flex>
             <label>Plot</label>
-            <input ng-model="movieInfo.Plot" disabled>
+            <textarea ng-model="movieInfo.Plot" columns="1" md-maxlength="300" disabled></textarea>
         </md-input-container>
+
+        <md-button class="md-raised" ng-click="goBack()">Back</md-button>
     </md-card-content>
 </md-card>

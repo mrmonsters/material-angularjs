@@ -13,9 +13,9 @@
         <link rel="stylesheet" href="assets/app.css"/>
     </head>
 
-    <body layout="column">
+    <body layout="column" ng-controller="appCtrl">
         <md-toolbar layout="row">
-            <md-button class="menu" aria-label="Settings">
+            <md-button class="menu" ng-click="toggleSidePanel()" aria-label="Settings">
                 <md-icon md-svg-icon="menu"></md-icon>
             </md-button>
             <h1>Angular Material - Movie Demo</h1>
@@ -24,8 +24,8 @@
         <div flex layout="row">
             <md-sidenav class="md-whiteframe-z2" md-component-id="leftPanel">
                 <md-list>
-                    <md-button>Search</md-button>
-                    <md-button>Result</md-button>
+                    <md-button ng-click="goToPath('/movies/search')">Search</md-button>
+                    <md-button ng-click="goToPath('/movies/result')">Result</md-button>
                 </md-list>
             </md-sidenav>
 
@@ -67,7 +67,26 @@
                 .primaryPalette('blue')
                 .accentPalette('red');
 
-            });
+            })
+            .controller('appCtrl',
+            [
+                '$scope',
+                '$location',
+                '$mdSidenav',
+                function($scope, $location, $mdSidenav)
+                {
+                    $scope.toggleSidePanel = function()
+                    {
+                        $mdSidenav('leftPanel').toggle();
+                    }
+
+                    $scope.goToPath = function(path)
+                    {
+                        $location.path(path);
+                        $mdSidenav('leftPanel').toggle();
+                    }
+                }
+            ]);
 
         </script>
 

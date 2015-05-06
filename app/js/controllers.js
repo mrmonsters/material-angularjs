@@ -25,11 +25,15 @@ function SearchController($scope, $http, $location, movieService)
     {
         var baseUrl = movieService.getBaseUrl();
 
-        baseUrl = movieService.addToUrl(baseUrl, '&t=', $scope.searchInfo.title);
-        baseUrl = movieService.addToUrl(baseUrl, '&y=', $scope.searchInfo.year);
-
         if ($scope.searchInfo.title)
         {
+            baseUrl = movieService.addToUrl(baseUrl, '&t=', $scope.searchInfo.title);
+
+            if ($scope.searchInfo.year)
+            {
+                baseUrl = movieService.addToUrl(baseUrl, '&y=', $scope.searchInfo.year);
+            }
+
             console.log(baseUrl);
 
             $http.get(baseUrl).success(function(data)
