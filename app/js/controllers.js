@@ -16,6 +16,12 @@ movieControllers
         '$location',
         'movieService',
         ResultController
+    ])
+    .controller('questionCtrl',
+    [
+        '$scope',
+        '$http',
+        QuestionController
     ]);
 
 function SearchController($scope, $http, $location, dialogService, movieService)
@@ -77,5 +83,18 @@ function ResultController($scope, $location, movieService)
     $scope.goBack = function()
     {
         $location.path('movies/search');
+    }
+}
+
+function QuestionController($scope, $http)
+{
+    $scope.questions = {};
+
+    $scope.init = function()
+    {
+        $http.get('/assets/json/questions.json').success(function(data)
+        {
+            $scope.questions = data;
+        });
     }
 }

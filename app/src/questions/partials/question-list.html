@@ -1,0 +1,14 @@
+<div ng-init="init()">
+    <md-card ng-repeat="question in questions">
+
+        <md-card-content>
+            <p>{{ question.quest }}</p>
+            <md-divider></md-divider>
+            <md-radio-group>
+                <md-radio-button value=""
+                    ng-repeat="opt in question.opt">{{ opt.opt_text }}</md-radio-button>
+            </md-radio-group>
+        </md-card-content>
+
+    </md-card>
+</div>
