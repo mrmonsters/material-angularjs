@@ -5,7 +5,7 @@
             <p>{{ question.quest }}</p>
             <md-divider></md-divider>
             <md-radio-group>
-                <md-radio-button value=""
+                <md-radio-button value="{{ opt.opt_id }}"
                     ng-repeat="opt in question.opt">{{ opt.opt_text }}</md-radio-button>
             </md-radio-group>
         </md-card-content>
